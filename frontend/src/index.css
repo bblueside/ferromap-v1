@@ -41,7 +41,7 @@
 
 /*
  * Tokens globales de color. Espejo de `src/constants/index.ts`
- * (BRAND_COLORS, MAP_COLORS): si cambias un valor aquí, cámbialo también allí.
+ * (BRAND_COLORS, MAP_COLORS y los tonos de FERROMAP_PALETTE que se usan como clase): si cambias un valor aquí, cámbialo también allí.
  * `static` garantiza que las variables existan aunque ninguna clase las use
  * (las consume CSS plano, p. ej. `assets/mapStyles.css`).
  */
@@ -51,6 +51,7 @@
   --color-ferromap-lime-dark: #8a9600;
   --color-ferromap-ink: #132133;
   --color-ferromap-navy: #1b2a5c;
+  --color-ferromap-blue-vibrant: #00a3e0; /* FERROMAP_PALETTE.blueVibrant */
 
   --color-map-planta: #f97316;
   --color-map-distribucion: #22c55e;

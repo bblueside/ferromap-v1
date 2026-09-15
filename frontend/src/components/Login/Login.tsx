@@ -82,7 +82,7 @@ export default function Login() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-argos-lime text-argos-navy h-11 w-full text-[15px] font-semibold tracking-wider transition-all hover:opacity-90 active:scale-[0.98]"
+            className="bg-ferromap-blue-vibrant text-foreground h-11 w-full text-[15px] font-semibold tracking-wider transition-all hover:opacity-90 active:scale-[0.98]"
           >
             {isSubmitting ? (
               <>
