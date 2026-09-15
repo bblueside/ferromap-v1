@@ -1,0 +1,103 @@
+{ "top_zones": [
+                {
+                    "id": "antioquia_medellin",
+                    "name": "Medellín, Antioquia",
+                    "ferreterias_count": 10,
+                    "priority": "Alta",
+                    "potential_score": 81,
+                    "analysis": "Zona con 10 ferreterías registradas, 2 negocios accionables y potencial Argos 81. Prioridad Alta. Confianza promedio del dato: 63.",
+                    "lat": 6.2471,
+                    "lng": -75.5756
+                },
+                {
+                    "id": "bogota_d_c_bogota_d_c",
+                    "name": "Bogotá D.C., Bogotá D.C.",
+                    "ferreterias_count": 10,
+                    "priority": "Alta",
+                    "potential_score": 86,
+                    "analysis": "Zona con 10 ferreterías registradas, 2 negocios accionables y potencial Argos 86. Prioridad Alta. Confianza promedio del dato: 71.",
+                    "lat": 4.711,
+                    "lng": -74.0721
+                },
+                {
+                    "id": "valle_cali",
+                    "name": "Cali, Valle del Cauca",
+                    "ferreterias_count": 10,
+                    "priority": "Alta",
+                    "potential_score": 86,
+                    "analysis": "Zona con 10 ferreterías registradas, 2 negocios accionables y potencial Argos 86. Prioridad Alta. Confianza promedio del dato: 64.",
+                    "lat": 3.4516,
+                    "lng": -76.532
+                },
+                {
+                    "id": "atlantico_barranquilla",
+                    "name": "Barranquilla, Atlántico",
+                    "ferreterias_count": 10,
+                    "priority": "Media",
+                    "potential_score": 78,
+                    "analysis": "Zona con 10 ferreterías registradas, 4 negocios accionables y potencial Argos 78. Prioridad Media. Confianza promedio del dato: 74.",
+                    "lat": 10.9878,
+                    "lng": -74.7889
+                },
+                {
+                    "id": "santander_bucaramanga",
+                    "name": "Bucaramanga, Santander",
+                    "ferreterias_count": 10,
+                    "priority": "Media",
+                    "potential_score": 75,
+                    "analysis": "Zona con 10 ferreterías registradas, 4 negocios accionables y potencial Argos 75. Prioridad Media. Confianza promedio del dato: 74.",
+                    "lat": 7.1198,
+                    "lng": -73.1227
+                },
+                {
+                    "id": "cordoba_monteria",
+                    "name": "Montería, Córdoba",
+                    "ferreterias_count": 10,
+                    "priority": "Media",
+                    "potential_score": 78,
+                    "analysis": "Zona con 10 ferreterías registradas, 3 negocios accionables y potencial Argos 78. Prioridad Media. Confianza promedio del dato: 70.",
+                    "lat": 8.7575,
+                    "lng": -75.8869
+                },
+                {
+                    "id": "narino_pasto",
+                    "name": "Pasto, Nariño",
+                    "ferreterias_count": 10,
+                    "priority": "Alta",
+                    "potential_score": 85,
+                    "analysis": "Zona con 10 ferreterías registradas, 5 negocios accionables y potencial Argos 85. Prioridad Alta. Confianza promedio del dato: 72.",
+                    "lat": 1.2136,
+                    "lng": -77.2811
+                },
+                {
+                    "id": "huila_neiva",
+                    "name": "Neiva, Huila",
+                    "ferreterias_count": 10,
+                    "priority": "Media",
+                    "potential_score": 79,
+                    "analysis": "Zona con 10 ferreterías registradas, 3 negocios accionables y potencial Argos 79. Prioridad Media. Confianza promedio del dato: 63.",
+                    "lat": 2.9273,
+                    "lng": -75.2819
+                },
+                {
+                    "id": "caldas_manizales",
+                    "name": "Manizales, Caldas",
+                    "ferreterias_count": 10,
+                    "priority": "Alta",
+                    "potential_score": 80,
+                    "analysis": "Zona con 10 ferreterías registradas, 6 negocios accionables y potencial Argos 80. Prioridad Alta. Confianza promedio del dato: 81.",
+                    "lat": 5.0703,
+                    "lng": -75.5138
+                },
+                {
+                    "id": "boyaca_tunja",
+                    "name": "Tunja, Boyacá",
+                    "ferreterias_count": 10,
+                    "priority": "Media",
+                    "potential_score": 73,
+                    "analysis": "Zona con 10 ferreterías registradas, 3 negocios accionables y potencial Argos 73. Prioridad Media. Confianza promedio del dato: 73.",
+                    "lat": 5.5353,
+                    "lng": -73.3678
+                }
+            ]
+        }

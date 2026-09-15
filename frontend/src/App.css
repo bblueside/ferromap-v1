@@ -1,0 +1,445 @@
+/*
+ * App.css — Estilos globales reutilizables de la app (clases `ui-*`).
+ *
+ * Se importa desde `index.css` (después de Tailwind), por eso puede usar
+ * `@apply` y los tokens `--color-ferromap-*` / `--color-map-*`.
+ *
+ * Qué NO vive aquí: valores de estado, etiquetas y hex para Leaflet/Recharts
+ * (`src/constants/index.ts`). Los catálogos de estado solo guardan un tono;
+ * el componente lo convierte en clase con `toneClass(tone, slot)`.
+ *
+ * Dos capas, según a qué se aplican:
+ *
+ *   components  Elementos propios (modales, títulos, dropzone…). Van antes de
+ *               `utilities`, así una utilidad en `className` los puede ajustar
+ *               (`<ModalButton className="px-4">`).
+ *
+ *   semantic    Tonos de estado y decoración de primitivas shadcn (Badge,
+ *               Button, Table*). Van DESPUÉS de `utilities` porque esas
+ *               primitivas ya traen utilidades de color (`text-foreground`,
+ *               `bg-primary`, `hover:bg-muted/50`) que de otro modo ganarían.
+ *               Consecuencia: no se sobrescriben con utilidades; para variar,
+ *               agrega un modificador aquí mismo (p. ej. `.ui-table-empty-lg`).
+ *
+ * Reglas: prefijo `ui-` (evita choques con Tailwind y tailwind-merge) y
+ * estados por atributo (`aria-pressed`, `aria-current`, `data-dragging`) en
+ * lugar de clases condicionales en JS.
+ */
+
+@layer theme, base, components, utilities, semantic;
+
+/* ═══ components ═══════════════════════════════════════════════════════════ */
+
+@layer components {
+  /* ─── Página ──────────────────────────────────────────────────────────── */
+
+  .ui-page-title {
+    @apply text-3xl font-bold text-slate-900;
+  }
+
+  .ui-page-subtitle {
+    @apply text-base text-slate-500;
+  }
+
+  .ui-section-title {
+    @apply text-2xl font-bold text-slate-900;
+  }
+
+  .ui-page-meta {
+    @apply text-xs text-slate-400;
+  }
+
+  /* ─── Texto ───────────────────────────────────────────────────────────── */
+
+  /** Valor ausente en tablas ("N/A"). */
+  .ui-empty-value {
+    @apply text-xs text-slate-400 italic;
+  }
+
+  .ui-link {
+    @apply text-blue-500 hover:underline;
+  }
+
+  .ui-accent-text {
+    @apply text-sky-500;
+  }
+
+  .ui-focus-ring {
+    @apply focus-visible:ring-2 focus-visible:ring-sky-400;
+  }
+
+  /* ─── Navegación ──────────────────────────────────────────────────────── */
+
+  .ui-nav-link {
+    @apply text-sm font-medium text-slate-900 transition-colors hover:text-slate-600;
+  }
+
+  .ui-nav-link[aria-current="page"] {
+    @apply border-b-2 border-lime-700 pb-0.5 text-lime-700 hover:text-lime-700;
+  }
+
+  /* ─── Badges y chips ──────────────────────────────────────────────────── */
+
+  /** Base de `BadgeCard` (popups del mapa). El color lo pone un tono. */
+  .ui-badge-card {
+    @apply rounded-md border px-2.5 py-1 text-xs font-medium;
+  }
+
+  /** Chip compacto sin borde visible (lista de archivos). */
+  .ui-chip {
+    @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-medium;
+  }
+
+  .ui-progress-track {
+    @apply h-1.5 w-16 overflow-hidden rounded-full bg-slate-100;
+  }
+
+  /* ─── Archivos ────────────────────────────────────────────────────────── */
+
+  .ui-file-icon-image {
+    @apply text-sky-400;
+  }
+
+  .ui-file-icon-video {
+    @apply text-violet-400;
+  }
+
+  .ui-file-icon-audio {
+    @apply text-amber-400;
+  }
+
+  .ui-file-icon-document {
+    @apply text-orange-400;
+  }
+
+  .ui-file-icon-other {
+    @apply text-zinc-400;
+  }
+
+  .ui-remove-button {
+    @apply flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-zinc-300 transition-colors hover:bg-red-50 hover:text-red-400;
+  }
+
+  .ui-dropzone {
+    @apply flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-200 bg-zinc-50 px-4 py-7 transition-all duration-150 select-none hover:border-sky-300 hover:bg-sky-50/50;
+  }
+
+  .ui-dropzone[data-dragging="true"] {
+    @apply border-sky-400 bg-sky-50;
+  }
+
+  .ui-dropzone-icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-white text-zinc-400 transition-colors;
+  }
+
+  .ui-dropzone[data-dragging="true"] .ui-dropzone-icon {
+    @apply border-transparent bg-sky-100 text-sky-400;
+  }
+
+  /* ─── Modal ───────────────────────────────────────────────────────────── */
+
+  .ui-modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/20 p-4 backdrop-blur-sm;
+  }
+
+  .ui-modal-panel {
+    @apply relative w-full rounded-2xl border border-zinc-100 bg-white shadow-2xl shadow-zinc-200/80;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .ui-modal-panel-sm {
+    @apply max-w-sm;
+  }
+
+  .ui-modal-panel-lg {
+    @apply flex max-h-[90vh] max-w-3xl flex-col overflow-hidden;
+  }
+
+  .ui-modal-header {
+    @apply flex shrink-0 items-center gap-3 border-b border-zinc-100 px-5 pt-5 pb-4;
+  }
+
+  .ui-modal-panel-lg .ui-modal-header {
+    @apply px-6;
+  }
+
+  .ui-modal-icon {
+    @apply flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100;
+  }
+
+  .ui-modal-icon-brand {
+    @apply bg-ferromap-lime/20 text-ferromap-lime-dark;
+  }
+
+  .ui-modal-title {
+    @apply text-sm leading-tight font-semibold text-zinc-800;
+  }
+
+  .ui-modal-subtitle {
+    @apply mt-0.5 text-xs leading-tight text-zinc-400;
+  }
+
+  .ui-modal-close {
+    @apply flex h-8 w-8 items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100;
+  }
+
+  .ui-modal-error {
+    @apply rounded-xl bg-red-50 p-3 text-sm text-red-500;
+  }
+
+  .ui-field-label {
+    @apply text-[11px] font-semibold tracking-widest text-zinc-400 uppercase;
+  }
+
+  .ui-summary {
+    @apply divide-y divide-zinc-100 rounded-xl border border-zinc-100 bg-zinc-50;
+  }
+
+  .ui-summary-row {
+    @apply flex items-center justify-between px-4 py-3;
+  }
+
+  .ui-summary-label {
+    @apply text-xs text-zinc-500;
+  }
+
+  .ui-summary-value {
+    @apply text-xs font-medium text-zinc-500;
+  }
+
+  .ui-modal-btn {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-medium transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .ui-modal-btn-primary {
+    @apply bg-sky-400 text-white shadow-sm hover:bg-sky-500;
+  }
+
+  .ui-modal-btn-brand {
+    @apply bg-ferromap-lime text-ferromap-ink hover:bg-ferromap-lime-hover;
+  }
+
+  .ui-modal-btn-outline {
+    @apply border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50;
+  }
+
+  /* Opción seleccionable; el estado lo da `aria-pressed`. */
+  .ui-choice {
+    @apply transition-all duration-150;
+  }
+
+  .ui-choice-pill {
+    @apply border border-zinc-200 bg-white text-zinc-500 hover:border-sky-300 hover:text-sky-500;
+  }
+
+  .ui-choice-segment {
+    @apply text-zinc-500 hover:text-zinc-700;
+  }
+
+  .ui-choice-card {
+    @apply border-zinc-200 bg-white text-zinc-500 hover:border-sky-300 hover:text-sky-500;
+  }
+
+  .ui-choice-pill[aria-pressed="true"],
+  .ui-choice-segment[aria-pressed="true"] {
+    @apply border-transparent bg-sky-400 text-white shadow-sm hover:text-white;
+  }
+
+  .ui-choice-card[aria-pressed="true"] {
+    @apply border-sky-300 bg-zinc-50 text-zinc-800 hover:text-zinc-800;
+  }
+}
+
+/* ═══ semantic ═════════════════════════════════════════════════════════════ */
+
+@layer semantic {
+  /* ─── Botones de marca (sobre `<Button>` de shadcn) ───────────────────── */
+
+  .ui-btn-brand {
+    @apply bg-ferromap-lime text-ferromap-ink hover:bg-ferromap-lime-hover;
+  }
+
+  /** Botón outline que se pinta de marca al pasar el cursor. */
+  .ui-btn-brand-hover {
+    @apply font-semibold hover:border-ferromap-lime hover:bg-ferromap-lime hover:text-slate-800;
+  }
+
+  /* ─── Tablas (sobre `Table*` y `Pagination*` de shadcn) ───────────────── */
+
+  .ui-table {
+    @apply overflow-hidden rounded-xl border border-slate-200 bg-white;
+  }
+
+  .ui-table-header-row {
+    @apply bg-slate-50/60 hover:bg-slate-50/60;
+  }
+
+  .ui-table-head {
+    @apply text-xs font-semibold tracking-wide text-slate-500;
+  }
+
+  .ui-table-head-compact {
+    @apply text-[11px];
+  }
+
+  .ui-table-empty {
+    @apply py-8 text-center text-sm text-slate-500;
+  }
+
+  .ui-table-empty-lg {
+    @apply py-12;
+  }
+
+  .ui-table-footer {
+    @apply border-t border-slate-200 px-4 py-3;
+  }
+
+  .ui-table-page-label {
+    @apply text-xs font-semibold text-slate-500;
+  }
+
+  .ui-pager {
+    @apply cursor-pointer aria-disabled:pointer-events-none aria-disabled:opacity-50;
+  }
+
+  /*
+   * ─── Tonos ─────────────────────────────────────────────────────────────
+   * `ui-tone-{tone}-{slot}` · tone: success | warning | danger | info |
+   * progress | neutral | brand · slot: badge | dot | bar | text | surface | value.
+   * Solo definen color: tamaño, borde y forma los pone quien los usa.
+   * Mantener en sincronía con `Tone` y `ToneSlot` de `@/constants`.
+   */
+
+  .ui-tone-success-badge {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-700;
+  }
+  .ui-tone-success-dot {
+    @apply bg-emerald-500;
+  }
+  .ui-tone-success-bar {
+    @apply bg-emerald-400;
+  }
+  .ui-tone-success-text {
+    @apply text-emerald-600;
+  }
+  .ui-tone-success-surface {
+    @apply border-emerald-100 bg-emerald-50 text-emerald-600;
+  }
+  .ui-tone-success-value {
+    @apply text-emerald-700;
+  }
+
+  .ui-tone-warning-badge {
+    @apply border-amber-200 bg-amber-50 text-amber-700;
+  }
+  .ui-tone-warning-dot {
+    @apply bg-amber-400;
+  }
+  .ui-tone-warning-bar {
+    @apply bg-amber-400;
+  }
+  .ui-tone-warning-text {
+    @apply text-amber-600;
+  }
+  .ui-tone-warning-surface {
+    @apply border-amber-100 bg-amber-50 text-amber-600;
+  }
+  .ui-tone-warning-value {
+    @apply text-amber-700;
+  }
+
+  .ui-tone-danger-badge {
+    @apply border-red-200 bg-red-50 text-red-600;
+  }
+  .ui-tone-danger-dot {
+    @apply bg-red-500;
+  }
+  .ui-tone-danger-bar {
+    @apply bg-red-400;
+  }
+  .ui-tone-danger-text {
+    @apply text-red-500;
+  }
+  .ui-tone-danger-surface {
+    @apply border-red-100 bg-red-50 text-red-500;
+  }
+  .ui-tone-danger-value {
+    @apply text-red-600;
+  }
+
+  .ui-tone-info-badge {
+    @apply border-blue-200 bg-blue-50 text-blue-700;
+  }
+  .ui-tone-info-dot {
+    @apply bg-blue-400;
+  }
+  .ui-tone-info-bar {
+    @apply bg-blue-400;
+  }
+  .ui-tone-info-text {
+    @apply text-blue-600;
+  }
+  .ui-tone-info-surface {
+    @apply border-blue-100 bg-blue-50 text-blue-600;
+  }
+  .ui-tone-info-value {
+    @apply text-blue-700;
+  }
+
+  .ui-tone-progress-badge {
+    @apply border-violet-200 bg-violet-50 text-violet-700;
+  }
+  .ui-tone-progress-dot {
+    @apply bg-violet-400;
+  }
+  .ui-tone-progress-bar {
+    @apply bg-violet-400;
+  }
+  .ui-tone-progress-text {
+    @apply text-violet-600;
+  }
+  .ui-tone-progress-surface {
+    @apply border-violet-100 bg-violet-50 text-violet-600;
+  }
+  .ui-tone-progress-value {
+    @apply text-violet-700;
+  }
+
+  .ui-tone-neutral-badge {
+    @apply border-slate-200 bg-slate-50 text-slate-600;
+  }
+  .ui-tone-neutral-dot {
+    @apply bg-slate-400;
+  }
+  .ui-tone-neutral-bar {
+    @apply bg-slate-300;
+  }
+  .ui-tone-neutral-text {
+    @apply text-slate-500;
+  }
+  .ui-tone-neutral-surface {
+    @apply border-slate-200 bg-slate-50 text-slate-500;
+  }
+  .ui-tone-neutral-value {
+    @apply text-slate-700;
+  }
+
+  .ui-tone-brand-badge {
+    @apply border-lime-200 bg-lime-50 text-lime-700;
+  }
+  .ui-tone-brand-dot {
+    @apply bg-ferromap-lime;
+  }
+  .ui-tone-brand-bar {
+    @apply bg-ferromap-lime;
+  }
+  .ui-tone-brand-text {
+    @apply text-lime-700;
+  }
+  .ui-tone-brand-surface {
+    @apply border-lime-200 bg-lime-50 text-lime-700;
+  }
+  .ui-tone-brand-value {
+    @apply text-lime-800;
+  }
+}

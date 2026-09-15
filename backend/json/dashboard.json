@@ -1,0 +1,71 @@
+{"dashboard": {
+                "kpis": {
+                    "totalFerreterias": "1250",
+                    "totalContactos": "4500"
+                },
+                "argosvsferreterias": [
+                    {
+                        "name": "Antioquia",
+                        "argos": 186,
+                        "total": 266
+                    },
+                    {
+                        "name": "Cundinamarca",
+                        "argos": 305,
+                        "total": 505
+                    },
+                    {
+                        "name": "Valle del Cauca",
+                        "argos": 237,
+                        "total": 357
+                    },
+                    {
+                        "name": "Atlántico",
+                        "argos": 73,
+                        "total": 263
+                    },
+                    {
+                        "name": "Santander",
+                        "argos": 209,
+                        "total": 339
+                    },
+                    {
+                        "name": "Bolívar",
+                        "argos": 214,
+                        "total": 354
+                    }
+                ],
+                "registrosagente": [
+                    {
+                        "name": "RAG Agent",
+                        "quantity": 275
+                    },
+                    {
+                        "name": "Web Scraper Agent",
+                        "quantity": 200
+                    },
+                    {
+                        "name": "API Agent",
+                        "quantity": 287
+                    }
+                ],
+                "coberturaferreteria": [
+                    {
+                        "name": "Listos",
+                        "quantity": 4980
+                    },
+                    {
+                        "name": "Contactables",
+                        "quantity": 3735
+                    },
+                    {
+                        "name": "Incompletos",
+                        "quantity": 2490
+                    },
+                    {
+                        "name": "Sin contacto",
+                        "quantity": 1245
+                    }
+                ]
+            }
+    }

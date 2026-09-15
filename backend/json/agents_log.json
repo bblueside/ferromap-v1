@@ -1,0 +1,18 @@
+{
+    "agents_log": [
+                {
+                    "agent": "A5",
+                    "run_id": "a5_run_sample",
+                    "status": "completed",
+                    "message": "Sample frontend contract generated.",
+                    "metrics": {
+                        "records_in": 3,
+                        "records_enriched": 3,
+                        "records_failed": 0,
+                        "zones_generated": 2,
+                        "routes_generated": 1,
+                        "gaps_detected": 2
+                    }
+                }
+            ]
+}
