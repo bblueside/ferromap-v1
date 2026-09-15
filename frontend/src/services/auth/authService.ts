@@ -20,6 +20,17 @@ export interface LoginCredentials {
   password: string;
 }
 
+/**
+ * Cuenta compartida de acceso público. Va hardcodeada a propósito: la
+ * plataforma es abierta y `useLogin` la precarga en el formulario, así el
+ * visitante solo pulsa "Iniciar sesión". Viaja en el bundle: no usar para
+ * cuentas con privilegios reales.
+ */
+export const PUBLIC_CREDENTIALS: LoginCredentials = {
+  email: "user@ferromap.com",
+  password: "admin123",
+};
+
 export interface AuthUser {
   id: string;
   email: string;

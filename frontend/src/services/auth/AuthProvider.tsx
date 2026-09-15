@@ -20,6 +20,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Al cargar / recargar la página, la cookie httpOnly puede seguir siendo
   // válida aunque este `useState` haya arrancado en blanco. Le preguntamos
   // al backend (`GET /api/users/me`) antes de decidir a qué pantalla entrar.
+  // Sin cookie válida → pantalla de login: nunca se inicia sesión sin que el
+  // usuario pulse "Iniciar sesión".
   useEffect(() => {
     let cancelled = false;
 

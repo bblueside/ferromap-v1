@@ -176,8 +176,7 @@ dist
 
 #CSV files
 .csv
-
 CLAUDE.md
-
 .claude
 .agents
+design/

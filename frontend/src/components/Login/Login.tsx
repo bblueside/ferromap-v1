@@ -10,9 +10,9 @@ import { useLogin } from "./useLogin"
 
 /**
  * Pantalla de inicio de sesión. Un único componente de presentación:
- * bloque de marca + formulario en el panel izquierdo, imagen a sangre en el
- * derecho. Toda la lógica (validación con zod + envío contra `useAuth`) vive
- * en `useLogin`; al autenticarse, `<App>` desmonta `<Login>` solo.
+ * imagen a sangre de fondo con velo navy y, encima, una tarjeta blanca con
+ * marca + formulario. Toda la lógica (validación con zod + envío contra
+ * `useAuth`) vive en `useLogin`; al autenticarse, `<App>` desmonta `<Login>` solo.
  *
  * Textos de la pantalla (es-CO) escritos directamente en el JSX.
  */
@@ -21,36 +21,44 @@ export default function Login() {
   const { errors } = form.formState
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Panel izquierdo: contenido */}
-      <div className="relative z-10 flex w-1/2 shrink-0 flex-col items-center justify-center bg-white px-16 py-14">
-        {/* Marca: logos + título + bajada */}
-        <div className="mb-8 flex flex-col items-center">
-          <img src={logo} alt="Logo de Ferromap" className="mb-5 h-16 w-auto" />
-        </div>
+    <div className="bg-ferromap-ink relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-10 sm:px-8 lg:justify-start lg:px-[120px]">
+      {/* Fondo: imagen decorativa (alt vacío) + velo navy que da contraste a la tarjeta. */}
+      <img
+        src={heroImage}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
+      />
+      <div className="from-ferromap-ink/90 via-ferromap-navy/55 to-ferromap-navy/5 absolute inset-0 bg-linear-to-r from-0% via-45% to-80%" />
 
-        <div className="mb-9 text-center">
-          <h1 className="text-argos-navy mb-3 text-[28px] font-semibold leading-tight tracking-tight">
-            Censo de ferreterías
-          </h1>
-          <p className="text-muted-foreground mx-auto max-w-[300px] text-sm leading-relaxed">
-            Convierte los datos del canal ferretero en decisiones de mercadeo más
-            inteligentes.
-          </p>
+      {/* Tarjeta: marca + formulario */}
+      <div className="relative w-full max-w-[448px] rounded-[18px] bg-white px-7 pt-10 pb-9 shadow-[0_30px_60px_-20px_rgba(8,15,30,0.55)] sm:px-11 sm:pt-11 sm:pb-10">
+        {/* Filete con el degradado del logo */}
+        <div
+          aria-hidden="true"
+          className="from-ferromap-lime to-ferromap-blue-vibrant absolute inset-x-7 top-0 h-1 rounded-b bg-linear-to-r sm:inset-x-11"
+        />
+
+        <div className="mb-8 flex flex-col gap-[18px]">
+          <img src={logo} alt="Logo de Ferromap" className="h-[38px] w-auto self-start" />
+          <div className="flex flex-col gap-2.5">
+            <h1 className="text-ferromap-navy text-[28px] leading-[1.15] font-semibold tracking-tight">
+              Censo de ferreterías
+            </h1>
+            <p className="text-muted-foreground text-sm leading-relaxed text-pretty">
+              Convierte los datos del canal ferretero en decisiones de mercadeo más
+              inteligentes.
+            </p>
+          </div>
         </div>
 
         {/* Formulario de login */}
-        <form
-          onSubmit={onSubmit}
-          noValidate
-          className="w-full max-w-[340px] space-y-5 text-left"
-        >
+        <form onSubmit={onSubmit} noValidate className="space-y-5 text-left">
           <FormField id="email" label="Correo electrónico" error={errors.email?.message}>
             <Input
               id="email"
               type="email"
               autoComplete="email"
-              placeholder="nombre@ferromap.co.com"
+              placeholder="user@ferromap.com"
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "email-error" : undefined}
               className="h-10 text-sm"
@@ -82,11 +90,11 @@ export default function Login() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-ferromap-blue-vibrant text-foreground h-11 w-full text-[15px] font-semibold tracking-wider transition-all hover:opacity-90 active:scale-[0.98]"
+            className="bg-ferromap-navy hover:bg-ferromap-ink mt-1.5 h-11 w-full text-[15px] font-semibold tracking-wide text-white transition-all active:scale-[0.98]"
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-4 w-4 animate-spin stroke-white" />
                 Iniciando sesión…
               </>
             ) : (
@@ -94,16 +102,6 @@ export default function Login() {
             )}
           </Button>
         </form>
-      </div>
-
-      {/* Panel derecho: imagen a sangre sobre fondo azul Argos */}
-      <div className="bg-argos-navy relative w-1/2 overflow-hidden">
-        {/* Imagen decorativa: alt vacío para que los lectores de pantalla la omitan. */}
-        <img
-          src={heroImage}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
       </div>
     </div>
   )
