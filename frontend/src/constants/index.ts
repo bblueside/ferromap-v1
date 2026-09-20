@@ -13,8 +13,10 @@
  *
  * Reglas:
  *   - Los colores de marca también existen como tokens CSS en `index.css`
- *     (`bg-ferromap-lime`, `var(--color-ferromap-lime)`). Si cambias un hex de
+ *     (`bg-ferromap-navy`, `var(--color-ferromap-navy)`). Si cambias un hex de
  *     `BRAND_COLORS` o `MAP_COLORS`, actualízalo también allí.
+ *   - Las claves `lime*` quedan en reserva: siguen definidas (aquí y en
+ *     `index.css`) pero ninguna clase de la UI las usa.
  */
 
 // ═══ 1. COLORES ══════════════════════════════════════════════════════════════
@@ -32,16 +34,18 @@ export const FERROMAP_PALETTE = {
   tealDeep: "#279989", // PANTONE 7473C
   blueSky: "#9BCBEB", // PANTONE 291C
   blueVibrant: "#00A3E0", // PANTONE 299C
-  blueMedium: "#426DA9", // PANTONE 7683C
+  blueMedium: "#2474D0", // PANTONE 7683C
 } as const;
 
 /** Colores de marca de la interfaz. Espejo: `--color-ferromap-*` en `index.css`. */
 export const BRAND_COLORS = {
+  /** Reserva: la UI ya no pinta con lime, pero los tokens siguen disponibles. */
   lime: "#c4d600",
   limeHover: "#b0c000",
   limeDark: "#8a9600",
   ink: "#132133",
   navy: "#1b2a5c",
+  navySoft: "#e8ecf5",
   white: "#ffffff",
 } as const;
 
@@ -207,11 +211,11 @@ export function scoreTone(value: number, metric: ScoreMetric): Tone {
   return SCORE_LEVEL_TONE[scoreLevel(value, metric)];
 }
 
-/** La cobertura llega como fracción en texto ("0.8"); se expresa en 0–100. */
+/** La cobertura ya llega en escala 0–100 (72.9); se redondea para mostrarla. */
 export function coverageToPercent(raw: string | number | null | undefined): number | null {
   if (raw == null || raw === "") return null;
   const value = Number(raw);
-  return Number.isFinite(value) ? Math.round(value * 100) : null;
+  return Number.isFinite(value) ? Math.round(value) : null;
 }
 
 // ─── Completitud del dato (dashboard y reportes) ────────────────────────────

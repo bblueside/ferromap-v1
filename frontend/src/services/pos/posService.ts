@@ -35,7 +35,8 @@ export interface Pos {
     priority: Priority;
     size: string;
     confidence: number;
-    coverage: null | string;
+    /** Cobertura en escala 0–100. */
+    coverage: number | null;
     quality: string;
     phone: string | null;
     departamento: string;
@@ -102,9 +103,23 @@ export function fetchAllPos(): Promise<Pos[]> {
     });
 }
 
+/** Ferreterías de ejemplo → `GET /api/map/getAllPosExample`. */
+export function fetchAllPosExample(): Promise<Pos[]> {
+    return fetchJson<Pos[]>(`${MAP_API_URL}/getAllPosExample`, {
+        credentials: "include",
+    });
+}
+
 /** Zonas de alto potencial → `GET /api/map/getAllTopZones`. */
 export function fetchAllTopZones(): Promise<zone[]> {
     return fetchJson<zone[]>(`${MAP_API_URL}/getAllTopZones`, {
+        credentials: "include",
+    });
+}
+
+/** Zonas de ejemplo (Chocó) → `GET /api/map/getAllTopZonesExample`. */
+export function fetchAllTopZonesExample(): Promise<zone[]> {
+    return fetchJson<zone[]>(`${MAP_API_URL}/getAllTopZonesExample`, {
         credentials: "include",
     });
 }
@@ -172,8 +187,10 @@ export interface MapData {
  */
 export async function fetchMapData(): Promise<MapData> {
     const [pos, zones] = await Promise.all([
-        fetchAllPos(),
-        fetchAllTopZones(),
+        // fetchAllPos(),
+        fetchAllPosExample(),
+        // fetchAllTopZones(),
+        fetchAllTopZonesExample(),
     ]);
     return {
         ferreterias: pos.filter((f) => isPriority(f.priority)),

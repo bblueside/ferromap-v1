@@ -1,0 +1,28 @@
+id,name,ferreterias_count,priority,potential_score,analysis,lat,lng
+atlantico_barranquilla,"Barranquilla, Atlántico",101,Alta,69,"Zona con 101 ferreterías registradas, 66 negocios accionables y potencial Ferromap 69. Prioridad Alta. Confianza promedio del dato: 75.",10.983978,-74.805080
+bolivar_cartagena,"Cartagena, Bolívar",67,Alta,68,"Zona con 67 ferreterías registradas, 44 negocios accionables y potencial Ferromap 68. Prioridad Alta. Confianza promedio del dato: 75.",10.406840,-75.515540
+magdalena_santa_marta,"Santa Marta, Magdalena",48,Alta,68,"Zona con 48 ferreterías registradas, 32 negocios accionables y potencial Ferromap 68. Prioridad Alta. Confianza promedio del dato: 76.",11.229831,-74.193136
+cesar_valledupar,"Valledupar, Cesar",40,Alta,71,"Zona con 40 ferreterías registradas, 24 negocios accionables y potencial Ferromap 71. Prioridad Alta. Confianza promedio del dato: 73.",10.469245,-73.250457
+cordoba_monteria,"Montería, Córdoba",40,Alta,70,"Zona con 40 ferreterías registradas, 30 negocios accionables y potencial Ferromap 70. Prioridad Alta. Confianza promedio del dato: 75.",8.744122,-75.881531
+atlantico_soledad,"Soledad, Atlántico",28,Alta,69,"Zona con 28 ferreterías registradas, 18 negocios accionables y potencial Ferromap 69. Prioridad Alta. Confianza promedio del dato: 76.",10.911413,-74.795224
+sucre_sincelejo,"Sincelejo, Sucre",28,Media,57,"Zona con 28 ferreterías registradas, 14 negocios accionables y potencial Ferromap 57. Prioridad Media. Confianza promedio del dato: 73.",9.300769,-75.391710
+guajira_riohacha,"Riohacha, La Guajira",16,Media,59,"Zona con 16 ferreterías registradas, 9 negocios accionables y potencial Ferromap 59. Prioridad Media. Confianza promedio del dato: 73.",11.530471,-72.911467
+guajira_maicao,"Maicao, La Guajira",13,Alta,73,"Zona con 13 ferreterías registradas, 9 negocios accionables y potencial Ferromap 73. Prioridad Alta. Confianza promedio del dato: 80.",11.375492,-72.241437
+atlantico_malambo,"Malambo, Atlántico",10,Media,60,"Zona con 10 ferreterías registradas, 5 negocios accionables y potencial Ferromap 60. Prioridad Media. Confianza promedio del dato: 77.",10.864633,-74.784853
+magdalena_cienaga,"Ciénaga, Magdalena",10,Media,63,"Zona con 10 ferreterías registradas, 7 negocios accionables y potencial Ferromap 63. Prioridad Media. Confianza promedio del dato: 75.",11.005613,-74.246799
+bolivar_magangue,"Magangué, Bolívar",9,Media,57,"Zona con 9 ferreterías registradas, 4 negocios accionables y potencial Ferromap 57. Prioridad Media. Confianza promedio del dato: 73.",9.245567,-74.756150
+atlantico_sabanalarga,"Sabanalarga, Atlántico",8,Media,59,"Zona con 8 ferreterías registradas, 3 negocios accionables y potencial Ferromap 59. Prioridad Media. Confianza promedio del dato: 80.",10.629788,-74.920387
+cesar_aguachica,"Aguachica, Cesar",8,Media,56,"Zona con 8 ferreterías registradas, 7 negocios accionables y potencial Ferromap 56. Prioridad Media. Confianza promedio del dato: 76.",8.308594,-73.609786
+bolivar_turbaco,"Turbaco, Bolívar",7,Media,47,"Zona con 7 ferreterías registradas, 3 negocios accionables y potencial Ferromap 47. Prioridad Media. Confianza promedio del dato: 64.",10.329438,-75.422511
+cordoba_cerete,"Cereté, Córdoba",7,Media,67,"Zona con 7 ferreterías registradas, 4 negocios accionables y potencial Ferromap 67. Prioridad Media. Confianza promedio del dato: 76.",8.891612,-75.786761
+cordoba_lorica,"Lorica, Córdoba",7,Media,61,"Zona con 7 ferreterías registradas, 4 negocios accionables y potencial Ferromap 61. Prioridad Media. Confianza promedio del dato: 76.",9.239257,-75.815586
+atlantico_puerto_colombia,"Puerto Colombia, Atlántico",6,Baja,64,"Zona con 6 ferreterías registradas, 4 negocios accionables y potencial Ferromap 64. Prioridad Baja. Confianza promedio del dato: 88.",10.987708,-74.958340
+bolivar_arjona,"Arjona, Bolívar",6,Baja,47,"Zona con 6 ferreterías registradas, 2 negocios accionables y potencial Ferromap 47. Prioridad Baja. Confianza promedio del dato: 76.",10.251281,-75.342274
+cordoba_sahagun,"Sahagún, Córdoba",6,Baja,51,"Zona con 6 ferreterías registradas, 1 negocios accionables y potencial Ferromap 51. Prioridad Baja. Confianza promedio del dato: 77.",8.939132,-75.443269
+magdalena_fundacion,"Fundación, Magdalena",6,Baja,55,"Zona con 6 ferreterías registradas, 3 negocios accionables y potencial Ferromap 55. Prioridad Baja. Confianza promedio del dato: 77.",10.514834,-74.196597
+sucre_corozal,"Corozal, Sucre",6,Baja,50,"Zona con 6 ferreterías registradas, 2 negocios accionables y potencial Ferromap 50. Prioridad Baja. Confianza promedio del dato: 86.",9.323946,-75.298238
+cesar_codazzi,"Agustín Codazzi, Cesar",5,Baja,50,"Zona con 5 ferreterías registradas, 1 negocios accionables y potencial Ferromap 50. Prioridad Baja. Confianza promedio del dato: 85.",10.030486,-73.236049
+magdalena_plato,"Plato, Magdalena",5,Baja,56,"Zona con 5 ferreterías registradas, 0 negocios accionables y potencial Ferromap 56. Prioridad Baja. Confianza promedio del dato: 68.",9.797910,-74.780937
+sucre_san_marcos,"San Marcos, Sucre",5,Baja,58,"Zona con 5 ferreterías registradas, 1 negocios accionables y potencial Ferromap 58. Prioridad Baja. Confianza promedio del dato: 62.",8.662513,-75.140455
+guajira_fonseca,"Fonseca, La Guajira",4,Baja,63,"Zona con 4 ferreterías registradas, 3 negocios accionables y potencial Ferromap 63. Prioridad Baja. Confianza promedio del dato: 82.",10.887166,-72.843722
+guajira_uribia,"Uribia, La Guajira",4,Baja,57,"Zona con 4 ferreterías registradas, 3 negocios accionables y potencial Ferromap 57. Prioridad Baja. Confianza promedio del dato: 81.",11.718356,-72.263005

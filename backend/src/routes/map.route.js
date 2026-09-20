@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getAllPos } from '../controller/pos.controller.js';
-import { getAllTopZones } from '../controller/topZone.controller.js';
+import { getAllPos, getAllPosExample } from '../controller/pos.controller.js';
+import { getAllTopZones, getAllTopZonesExample } from '../controller/topZone.controller.js';
 import { getAllFactories } from '../controller/factory.controller.js';
 import { getAllWarehouse } from '../controller/warehouse.controller.js';
 import { getAllRoutes } from '../controller/route.controller.js';
@@ -18,5 +18,8 @@ router.route('/getAllTopZones').get(getAllTopZones);
 router.route('/getAllWarehouse').get(getAllWarehouse);
 router.route('/getAllFactories').get(getAllFactories);
 router.route('/getAllRoutes').get(getAllRoutes);
+
+router.route('/getAllPosExample').get(getAllPosExample);
+router.route('/getAllTopZonesExample').get(getAllTopZonesExample);
 
 export default router;

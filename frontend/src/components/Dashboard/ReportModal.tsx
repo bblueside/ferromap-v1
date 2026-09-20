@@ -52,8 +52,6 @@ export default function GenerateReportModal({ onClose }: { onClose: () => void }
         )].sort(),
     ], [pos]);
 
-    const [fechaDesde, setFechaDesde] = useState("");
-    const [fechaHasta, setFechaHasta] = useState("");
     const [departamento, setDepartamento] = useState("Todos");
     const [completitud, setCompletitud] = useState(INITIAL_COMPLETENESS);
     const [tipoSalida, setTipoSalida] = useState<OutputFormat>("csv");
@@ -101,32 +99,6 @@ export default function GenerateReportModal({ onClose }: { onClose: () => void }
             onClose={onClose}
         >
             <div className="px-5 py-5 space-y-5">
-
-                {/* ── Rango de fechas ── */}
-                <div className="space-y-2">
-                    <SectionLabel icon={Calendar}>Rango de fechas</SectionLabel>
-                    <div className="flex gap-2">
-                        <div className={DATE_INPUT_BOX}>
-                            <input
-                                type="date"
-                                aria-label="Fecha inicial"
-                                value={fechaDesde}
-                                onChange={(e) => setFechaDesde(e.target.value)}
-                                className={DATE_INPUT}
-                            />
-                        </div>
-                        <span className="flex items-center text-xs text-zinc-400 font-medium">→</span>
-                        <div className={DATE_INPUT_BOX}>
-                            <input
-                                type="date"
-                                aria-label="Fecha final"
-                                value={fechaHasta}
-                                onChange={(e) => setFechaHasta(e.target.value)}
-                                className={DATE_INPUT}
-                            />
-                        </div>
-                    </div>
-                </div>
 
                 {/* ── Departamento ── */}
                 <div className="space-y-2">

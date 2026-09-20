@@ -1,0 +1,11 @@
+id,name,ferreterias_count,priority,potential_score,analysis,lat,lng
+choco_quibdo,"Quibdó, Chocó",114,Alta,66,"Zona con 114 ferreterías registradas, 78 negocios accionables y potencial Ferromap 66. Prioridad Alta. Confianza promedio del dato: 73.",5.695473,-76.657041
+choco_istmina,"Istmina, Chocó",35,Alta,64,"Zona con 35 ferreterías registradas, 24 negocios accionables y potencial Ferromap 64. Prioridad Alta. Confianza promedio del dato: 73.",5.160432,-76.685052
+choco_condoto,"Condoto, Chocó",28,Media,55,"Zona con 28 ferreterías registradas, 0 negocios accionables y potencial Ferromap 55. Prioridad Media. Confianza promedio del dato: 70.",5.091312,-76.649560
+choco_tado,"Tadó, Chocó",25,Media,55,"Zona con 25 ferreterías registradas, 0 negocios accionables y potencial Ferromap 55. Prioridad Media. Confianza promedio del dato: 76.",5.266400,-76.561672
+choco_riosucio,"Riosucio, Chocó",24,Media,56,"Zona con 24 ferreterías registradas, 0 negocios accionables y potencial Ferromap 56. Prioridad Media. Confianza promedio del dato: 77.",7.437683,-77.115043
+choco_acandi,"Acandí, Chocó",20,Media,51,"Zona con 20 ferreterías registradas, 0 negocios accionables y potencial Ferromap 51. Prioridad Media. Confianza promedio del dato: 75.",8.508776,-77.282635
+choco_bahia_solano,"Bahía Solano, Chocó",18,Baja,39,"Zona con 18 ferreterías registradas, 0 negocios accionables y potencial Ferromap 39. Prioridad Baja. Confianza promedio del dato: 77.",6.223737,-77.401320
+choco_nuqui,"Nuquí, Chocó",14,Baja,35,"Zona con 14 ferreterías registradas, 0 negocios accionables y potencial Ferromap 35. Prioridad Baja. Confianza promedio del dato: 70.",5.710369,-77.266562
+choco_unguia,"Unguía, Chocó",14,Baja,42,"Zona con 14 ferreterías registradas, 0 negocios accionables y potencial Ferromap 42. Prioridad Baja. Confianza promedio del dato: 81.",8.044119,-77.093196
+choco_bojaya,"Bojayá, Chocó",8,Baja,37,"Zona con 8 ferreterías registradas, 0 negocios accionables y potencial Ferromap 37. Prioridad Baja. Confianza promedio del dato: 79.",6.559630,-76.887469

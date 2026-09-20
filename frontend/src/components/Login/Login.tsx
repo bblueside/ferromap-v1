@@ -35,7 +35,7 @@ export default function Login() {
         {/* Filete con el degradado del logo */}
         <div
           aria-hidden="true"
-          className="from-ferromap-lime to-ferromap-blue-vibrant absolute inset-x-7 top-0 h-1 rounded-b bg-linear-to-r sm:inset-x-11"
+          className="from-ferromap-navy to-ferromap-blue-vibrant absolute inset-x-7 top-0 h-1 rounded-b bg-linear-to-r sm:inset-x-11"
         />
 
         <div className="mb-8 flex flex-col gap-[18px]">

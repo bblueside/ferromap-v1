@@ -125,14 +125,6 @@ function DashboardContent() {
                 </div>
 
                 {/* ── Line Chart ──────────────────────────────────────────────── */}
-                <div className="grid grid-cols-1 gap-4">
-                    <ChartLine
-                        data={lineChartData}
-                        title={lineChartTitle}
-                        description={lineChartDescription}
-                        lineChartConfig={lineChartConfig}
-                    />
-                </div>
 
                 {/* ── DataTable ───────────────────────────────────────────────── */}
                 <PosTable />
