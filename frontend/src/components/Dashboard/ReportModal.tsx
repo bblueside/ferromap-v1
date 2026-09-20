@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { FileText, Sheet, Download, Calendar, MapPin, CheckSquare, type LucideIcon } from "lucide-react";
+import { FileText, Sheet, Download, MapPin, CheckSquare, type LucideIcon } from "lucide-react";
 
 import { useDashboard } from "@/services/dashboard/useDashboard";
 import { ModalShell } from "@/components/shared/modal/ModalShell";
@@ -24,9 +24,6 @@ const INITIAL_COMPLETENESS: Record<CompletenessLevel, boolean> = {
     incompletos: false,
     sin_contacto: false,
 };
-
-const DATE_INPUT_BOX = "flex flex-1 items-center gap-2 rounded-xl border border-zinc-200 bg-white px-3 py-2.5";
-const DATE_INPUT = "w-full bg-transparent text-xs font-medium text-zinc-700 focus:outline-none";
 
 function SectionLabel({ icon: Icon, children }: { icon: LucideIcon; children: string }) {
     return (

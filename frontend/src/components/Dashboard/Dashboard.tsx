@@ -2,7 +2,6 @@ import { StaticsCard } from "./StaticsCard"
 import { ChartBarDefault, type BarChartEntry } from "./BarChartDefault"
 import { ChartBarMultiple } from "./BarMutilpleChart"
 import { PieChartDonut } from "./PieChartDonut"
-import { ChartLine } from "./LineChart"
 import { Button } from "../ui/button"
 import GenerateReportModal from "./ReportModal"
 import { FileOutput } from "lucide-react"
@@ -15,13 +14,11 @@ import { useDashboard } from "@/services/dashboard/useDashboard";
 // ── Configs estáticas que no vienen de la API ──────────────────────────────────
 import {
     pieChartConfig,
-    lineChartConfig,
     barChartTitle, barChartDescription,
     barMultipleChartTitle, barMultipleChartDescription,
     pieChartTitleAgent, pieChartDescriptionAgent,
     donutChartTitleCompleteness, donutChartDescriptionCompleteness,
-    CoverageChartConfig,
-    lineChartTitle, lineChartDescription, lineChartData
+    CoverageChartConfig
 } from "./chartConfig"
 import { ApiStateLoading, ApiStateError } from "@/hooks/ApiStateWrapper"
 
