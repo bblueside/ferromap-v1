@@ -28,6 +28,32 @@ export function setUnauthorizedHandler(handler: (() => void) | null): void {
     onUnauthorized = handler;
 }
 
+/** Respuesta HTTP no exitosa; conserva el status para decidir cómo reaccionar. */
+export class HttpError extends Error {
+    readonly status: number;
+
+    constructor(status: number, message: string) {
+        super(message);
+        this.status = status;
+        this.name = "HttpError";
+    }
+}
+
+// Status que devuelve un proxy (Vite en dev, el reverse proxy en prod) cuando
+// el backend detrás no responde.
+const GATEWAY_STATUSES = new Set([502, 503, 504]);
+
+/**
+ * El backend no está en ejecución o no es accesible: `fetch` rechaza con
+ * `TypeError` cuando no hay respuesta, y un proxy intermedio responde 502-504.
+ */
+export function isBackendUnavailable(error: unknown): boolean {
+    return (
+        error instanceof TypeError ||
+        (error instanceof HttpError && GATEWAY_STATUSES.has(error.status))
+    );
+}
+
 /** GET/POST con parseo de JSON y mensajes de error uniformes. */
 export async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
     const res = await fetch(url, init);
@@ -41,7 +67,7 @@ export async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> 
     }
 
     if (!res.ok) {
-        throw new Error(`Error ${res.status}: ${res.statusText}`);
+        throw new HttpError(res.status, `Error ${res.status}: ${res.statusText}`);
     }
 
     const text = await res.text();

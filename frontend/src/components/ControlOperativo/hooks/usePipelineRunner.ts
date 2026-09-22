@@ -14,6 +14,7 @@ import {
   type AgentProgress,
   type CodedProgress,
 } from "../domain/agentRoster";
+import { isBackendUnavailable } from "@/services/http";
 import { errorMessage } from "../domain/errors";
 import { pollPipelineExecution, requireExecutionId } from "../domain/pipelineExecution";
 
@@ -49,6 +50,9 @@ export function usePipelineRunner({ setProgress, applyStages, onExecutionFinishe
   const [isExecuting, setIsExecuting] = useState(false);
   const [executionId, setExecutionId] = useState<string | null>(null);
   const [lastMessage, setLastMessage] = useState<string | null>(null);
+  // El pipeline no respondió (servidor caído o inaccesible).
+  const [backendUnavailable, setBackendUnavailable] = useState(false);
+  const dismissBackendUnavailable = useCallback(() => setBackendUnavailable(false), []);
 
   // Cancela el polling en curso al desmontar la pestaña.
   const abortRef = useRef<AbortController | null>(null);
@@ -91,6 +95,7 @@ export function usePipelineRunner({ setProgress, applyStages, onExecutionFinishe
         setIsExecuting(false);
         setLastMessage(message);
         setProgress(plan.targets, { status: "Failed", task: message });
+        if (isBackendUnavailable(error)) setBackendUnavailable(true);
       }
     },
     [setProgress, applyStages, onExecutionFinished]
@@ -143,5 +148,14 @@ export function usePipelineRunner({ setProgress, applyStages, onExecutionFinishe
     });
   }, [execute]);
 
-  return { isExecuting, executionId, lastMessage, runAgent, runAll, runAfterUpload };
+  return {
+    isExecuting,
+    executionId,
+    lastMessage,
+    backendUnavailable,
+    dismissBackendUnavailable,
+    runAgent,
+    runAll,
+    runAfterUpload,
+  };
 }

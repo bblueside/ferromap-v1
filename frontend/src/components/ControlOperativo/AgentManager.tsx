@@ -5,6 +5,7 @@
  */
 
 import { useMemo } from "react";
+import { BackendUnavailableModal } from "@/components/shared/modal/BackendUnavailableModal";
 import { AGENTS } from "./agents/agentCatalog";
 import { AgentGrid } from "./agents/AgentGrid";
 import { inLayoutGroup } from "./domain/agentRoster";
@@ -47,6 +48,8 @@ export function AgentManager() {
 
         <ExecutionHistory logs={agentsLog} />
       </div>
+
+      {runner.backendUnavailable && <BackendUnavailableModal onClose={runner.dismissBackendUnavailable} />}
     </div>
   );
 }

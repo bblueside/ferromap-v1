@@ -187,10 +187,8 @@ export interface MapData {
  */
 export async function fetchMapData(): Promise<MapData> {
     const [pos, zones] = await Promise.all([
-        // fetchAllPos(),
-        fetchAllPosExample(),
-        // fetchAllTopZones(),
-        fetchAllTopZonesExample(),
+        fetchAllPos(),
+        fetchAllTopZones(),
     ]);
     return {
         ferreterias: pos.filter((f) => isPriority(f.priority)),

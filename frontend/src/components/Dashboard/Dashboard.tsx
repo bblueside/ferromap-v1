@@ -3,7 +3,7 @@ import { ChartBarDefault, type BarChartEntry } from "./BarChartDefault"
 import { ChartBarMultiple } from "./BarMutilpleChart"
 import { PieChartDonut } from "./PieChartDonut"
 import { Button } from "../ui/button"
-import GenerateReportModal from "./ReportModal"
+import { BackendUnavailableModal } from "@/components/shared/modal/BackendUnavailableModal"
 import { FileOutput } from "lucide-react"
 import { useState } from "react"
 import PosTable from "./DataTable"
@@ -60,7 +60,8 @@ function DashboardContent() {
 
     return (
         <>
-            {showReport && <GenerateReportModal onClose={() => setShowReport(false)} />}
+            {/* Reporte deshabilitado: solo informa que el backend no está disponible. */}
+            {showReport && <BackendUnavailableModal onClose={() => setShowReport(false)} />}
 
             <div className="px-22 pt-25 pb-6 flex flex-col gap-6 max-w-screen-xl mx-auto w-full">
 

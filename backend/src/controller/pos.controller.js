@@ -4,11 +4,15 @@ import path from "node:path";
 import { Pos } from "../model/pos.model.js";
 import { parseCSV } from "../utils/csv.js";
 
-// Dataset sintético de ferreterías de la Región Caribe (backend/data/).
-const EXAMPLE_CSV_PATH = path.join(
-    path.dirname(fileURLToPath(import.meta.url)),
-    "../../data/ferreterias_caribe_mock_500.csv"
-);
+// Datasets sintéticos de ferreterías (backend/data/): se agregan todas las regiones.
+const DATA_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../data");
+const EXAMPLE_CSV_FILES = [
+    "ferreterias_caribe_mock_500.csv",
+    "ferreterias_orinoquia_mock_400.csv",
+    "ferreterias_amazonia_mock_500.csv",
+    "ferreterias_andina_mock_1000.csv",
+    "ferreterias_pacifica_mock_300.csv",
+];
 
 // Columnas numéricas según pos.model.js; el resto se deja como string.
 const NUMERIC_FIELDS = new Set(["lat", "lng", "confidence", "coverage", "temperatura"]);
@@ -37,15 +41,20 @@ const toPosValue = (key, raw) => {
     return value;
 };
 
+const loadExampleCsv = async (file) => {
+    const [header, ...rows] = parseCSV(await readFile(path.join(DATA_DIR, file), "utf-8"));
+    const keys = header.map((key) => key.trim());
+
+    return rows.map((values) =>
+        Object.fromEntries(keys.map((key, idx) => [key, toPosValue(key, values[idx] ?? "")]))
+    );
+};
+
 const loadExamplePos = async () => {
     if (examplePosCache) return examplePosCache;
 
-    const [header, ...rows] = parseCSV(await readFile(EXAMPLE_CSV_PATH, "utf-8"));
-    const keys = header.map((key) => key.trim());
-
-    examplePosCache = rows.map((values) =>
-        Object.fromEntries(keys.map((key, idx) => [key, toPosValue(key, values[idx] ?? "")]))
-    );
+    const perRegion = await Promise.all(EXAMPLE_CSV_FILES.map(loadExampleCsv));
+    examplePosCache = perRegion.flat();
     return examplePosCache;
 };
 
