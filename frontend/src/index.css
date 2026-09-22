@@ -46,11 +46,14 @@
  * (las consume CSS plano, p. ej. `assets/mapStyles.css`).
  */
 @theme static {
+  /* Reserva: paleta lime, sin uso actual en la UI. */
   --color-ferromap-lime: #c4d600;
   --color-ferromap-lime-hover: #b0c000;
   --color-ferromap-lime-dark: #8a9600;
+
   --color-ferromap-ink: #132133;
   --color-ferromap-navy: #1b2a5c;
+  --color-ferromap-navy-soft: #e8ecf5;
   --color-ferromap-blue-vibrant: #00a3e0; /* FERROMAP_PALETTE.blueVibrant */
 
   --color-map-planta: #f97316;

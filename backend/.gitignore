@@ -142,4 +142,4 @@ dist
 .svelte-kit
 
 #CSV files
-.csv
+*.csv

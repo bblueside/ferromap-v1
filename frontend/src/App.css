@@ -65,7 +65,7 @@
   }
 
   .ui-focus-ring {
-    @apply focus-visible:ring-2 focus-visible:ring-sky-400;
+    @apply focus-visible:ring-ferromap-navy/50 focus-visible:ring-2;
   }
 
   /* ─── Navegación ──────────────────────────────────────────────────────── */
@@ -75,7 +75,7 @@
   }
 
   .ui-nav-link[aria-current="page"] {
-    @apply border-b-2 border-lime-700 pb-0.5 text-lime-700 hover:text-lime-700;
+    @apply border-ferromap-navy text-ferromap-navy hover:text-ferromap-navy border-b-2 pb-0.5;
   }
 
   /* ─── Badges y chips ──────────────────────────────────────────────────── */
@@ -168,7 +168,7 @@
   }
 
   .ui-modal-icon-brand {
-    @apply bg-ferromap-lime/20 text-ferromap-lime-dark;
+    @apply bg-ferromap-navy-soft text-ferromap-navy;
   }
 
   .ui-modal-title {
@@ -208,15 +208,17 @@
   }
 
   .ui-modal-btn {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-medium transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-medium transition-all duration-150 focus:outline-none focus-visible:ring-ferromap-navy/50 focus-visible:ring-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .ui-modal-btn-primary {
-    @apply bg-sky-400 text-white shadow-sm hover:bg-sky-500;
+    @apply bg-ferromap-navy hover:bg-ferromap-ink text-white shadow-sm;
+    --icon-color: var(--color-white);
   }
 
   .ui-modal-btn-brand {
-    @apply bg-ferromap-lime text-ferromap-ink hover:bg-ferromap-lime-hover;
+    @apply bg-ferromap-navy hover:bg-ferromap-ink text-white;
+    --icon-color: var(--color-white);
   }
 
   .ui-modal-btn-outline {
@@ -229,7 +231,7 @@
   }
 
   .ui-choice-pill {
-    @apply border border-zinc-200 bg-white text-zinc-500 hover:border-sky-300 hover:text-sky-500;
+    @apply hover:border-ferromap-navy/40 hover:text-ferromap-navy border border-zinc-200 bg-white text-zinc-500;
   }
 
   .ui-choice-segment {
@@ -237,16 +239,17 @@
   }
 
   .ui-choice-card {
-    @apply border-zinc-200 bg-white text-zinc-500 hover:border-sky-300 hover:text-sky-500;
+    @apply hover:border-ferromap-navy/40 hover:text-ferromap-navy border-zinc-200 bg-white text-zinc-500;
   }
 
   .ui-choice-pill[aria-pressed="true"],
   .ui-choice-segment[aria-pressed="true"] {
-    @apply border-transparent bg-sky-400 text-white shadow-sm hover:text-white;
+    @apply bg-ferromap-navy border-transparent text-white shadow-sm hover:text-white;
+    --icon-color: var(--color-white);
   }
 
   .ui-choice-card[aria-pressed="true"] {
-    @apply border-sky-300 bg-zinc-50 text-zinc-800 hover:text-zinc-800;
+    @apply border-ferromap-navy bg-zinc-50 text-zinc-800 hover:text-zinc-800;
   }
 }
 
@@ -255,13 +258,19 @@
 @layer semantic {
   /* ─── Botones de marca (sobre `<Button>` de shadcn) ───────────────────── */
 
+  /* `--icon-color` acompaña al texto: los iconos lucide leen ese token, no `currentColor`. */
   .ui-btn-brand {
-    @apply bg-ferromap-lime text-ferromap-ink hover:bg-ferromap-lime-hover;
+    @apply bg-ferromap-navy hover:bg-ferromap-ink text-white;
+    --icon-color: var(--color-white);
   }
 
   /** Botón outline que se pinta de marca al pasar el cursor. */
   .ui-btn-brand-hover {
-    @apply font-semibold hover:border-ferromap-lime hover:bg-ferromap-lime hover:text-slate-800;
+    @apply hover:border-ferromap-navy hover:bg-ferromap-navy font-semibold hover:text-white;
+  }
+
+  .ui-btn-brand-hover:hover {
+    --icon-color: var(--color-white);
   }
 
   /* ─── Tablas (sobre `Table*` y `Pagination*` de shadcn) ───────────────── */
@@ -425,21 +434,21 @@
   }
 
   .ui-tone-brand-badge {
-    @apply border-lime-200 bg-lime-50 text-lime-700;
+    @apply border-ferromap-navy/20 bg-ferromap-navy-soft text-ferromap-navy;
   }
   .ui-tone-brand-dot {
-    @apply bg-ferromap-lime;
+    @apply bg-ferromap-navy;
   }
   .ui-tone-brand-bar {
-    @apply bg-ferromap-lime;
+    @apply bg-ferromap-navy;
   }
   .ui-tone-brand-text {
-    @apply text-lime-700;
+    @apply text-ferromap-navy;
   }
   .ui-tone-brand-surface {
-    @apply border-lime-200 bg-lime-50 text-lime-700;
+    @apply border-ferromap-navy/20 bg-ferromap-navy-soft text-ferromap-navy;
   }
   .ui-tone-brand-value {
-    @apply text-lime-800;
+    @apply text-ferromap-navy;
   }
 }

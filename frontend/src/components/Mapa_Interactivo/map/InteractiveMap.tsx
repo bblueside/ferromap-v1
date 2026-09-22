@@ -20,12 +20,16 @@ const CARTO_TILE_URL =
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" +
   (CARTO_API_KEY ? `?key=${CARTO_API_KEY}` : "");
 
+// Máximo alejamiento permitido: vista regional de Colombia (Panamá–Venezuela).
+const MIN_ZOOM = 7;
+
 export function InteractiveMap() {
   return (
     <div className="w-full h-full min-h-[400px]">
       <MapContainer
         center={[4.5, -74.0]}
-        zoom={6}
+        zoom={MIN_ZOOM}
+        minZoom={MIN_ZOOM}
         scrollWheelZoom={true}
         zoomControl={false} // Desactivamos el control por defecto para usar el personalizado
         className="w-full h-full"

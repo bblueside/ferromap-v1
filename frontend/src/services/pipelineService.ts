@@ -13,7 +13,7 @@
  * `/api/control/getAllAgentsLog` (ver `services/control`).
  */
 
-import { fetchJson } from "./http";
+import { fetchJson, HttpError } from "./http";
 
 const PIPELINE_BASE_URL =
     (import.meta.env as Record<string, string | undefined>).VITE_PIPELINE_API_URL ??
@@ -85,7 +85,7 @@ export async function uploadFileToAPI(file: File, agentCode: string) {
         } catch {
             /* respuesta sin cuerpo JSON */
         }
-        throw new Error(errMessage);
+        throw new HttpError(res.status, errMessage);
     }
 
     return res.json();

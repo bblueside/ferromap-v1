@@ -3,10 +3,12 @@ import { CheckCircle2, Loader2, Upload } from "lucide-react";
 import type { Agent } from "../../domain/agent";
 import { getAgentCodeFromName } from "@/services/agentAdapter";
 import { uploadFileToAPI } from "@/services/pipelineService";
+import { isBackendUnavailable } from "@/services/http";
 import { cn } from "@/lib/utils";
 import { errorMessage } from "../../domain/errors";
 import { useUploadQueue } from "../../hooks/useUploadQueue";
 import { toneClass } from "@/constants";
+import { BackendUnavailableModal } from "@/components/shared/modal/BackendUnavailableModal";
 import { ModalShell } from "@/components/shared/modal/ModalShell";
 import { FieldLabel, ModalButton, ModalError, SummaryList, SummaryRow } from "@/components/shared/modal/modalPrimitives";
 import { DropZone } from "./DropZone";
@@ -27,6 +29,7 @@ export function FileUploadModal({ agent, onClose, onUploaded }: FileUploadModalP
   const { items, summary, addFiles, removeFile } = useUploadQueue();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [backendUnavailable, setBackendUnavailable] = useState(false);
 
   const agentCode = getAgentCodeFromName(agent.name);
   const canSubmit = summary.allDone && !isSubmitting;
@@ -46,10 +49,14 @@ export function FileUploadModal({ agent, onClose, onUploaded }: FileUploadModalP
       await onUploaded(files);
       onClose();
     } catch (error) {
-      setSubmitError(errorMessage(error, "Error al subir archivo a la API"));
+      if (isBackendUnavailable(error)) setBackendUnavailable(true);
+      else setSubmitError(errorMessage(error, "Error al subir archivo a la API"));
       setIsSubmitting(false);
     }
   };
+
+  // Reemplaza al modal de subida; al cerrarlo se cierra también la subida.
+  if (backendUnavailable) return <BackendUnavailableModal onClose={onClose} />;
 
   return (
     <ModalShell

@@ -2,9 +2,8 @@ import { StaticsCard } from "./StaticsCard"
 import { ChartBarDefault, type BarChartEntry } from "./BarChartDefault"
 import { ChartBarMultiple } from "./BarMutilpleChart"
 import { PieChartDonut } from "./PieChartDonut"
-import { ChartLine } from "./LineChart"
 import { Button } from "../ui/button"
-import GenerateReportModal from "./ReportModal"
+import { BackendUnavailableModal } from "@/components/shared/modal/BackendUnavailableModal"
 import { FileOutput } from "lucide-react"
 import { useState } from "react"
 import PosTable from "./DataTable"
@@ -15,13 +14,11 @@ import { useDashboard } from "@/services/dashboard/useDashboard";
 // ── Configs estáticas que no vienen de la API ──────────────────────────────────
 import {
     pieChartConfig,
-    lineChartConfig,
     barChartTitle, barChartDescription,
     barMultipleChartTitle, barMultipleChartDescription,
     pieChartTitleAgent, pieChartDescriptionAgent,
     donutChartTitleCompleteness, donutChartDescriptionCompleteness,
-    CoverageChartConfig,
-    lineChartTitle, lineChartDescription, lineChartData
+    CoverageChartConfig
 } from "./chartConfig"
 import { ApiStateLoading, ApiStateError } from "@/hooks/ApiStateWrapper"
 
@@ -63,7 +60,8 @@ function DashboardContent() {
 
     return (
         <>
-            {showReport && <GenerateReportModal onClose={() => setShowReport(false)} />}
+            {/* Reporte deshabilitado: solo informa que el backend no está disponible. */}
+            {showReport && <BackendUnavailableModal onClose={() => setShowReport(false)} />}
 
             <div className="px-22 pt-25 pb-6 flex flex-col gap-6 max-w-screen-xl mx-auto w-full">
 
@@ -125,14 +123,6 @@ function DashboardContent() {
                 </div>
 
                 {/* ── Line Chart ──────────────────────────────────────────────── */}
-                <div className="grid grid-cols-1 gap-4">
-                    <ChartLine
-                        data={lineChartData}
-                        title={lineChartTitle}
-                        description={lineChartDescription}
-                        lineChartConfig={lineChartConfig}
-                    />
-                </div>
 
                 {/* ── DataTable ───────────────────────────────────────────────── */}
                 <PosTable />

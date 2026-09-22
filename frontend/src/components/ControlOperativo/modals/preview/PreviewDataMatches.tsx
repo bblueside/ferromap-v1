@@ -59,7 +59,7 @@ export function PreviewDataMatches({ preview, onConfirm, onClose }: PreviewDataM
               {summary.newRecords} registros nuevos y {summary.matched} actualizados en el mapa.
             </p>
           </div>
-          <Button onClick={onClose} className="mt-2 h-10 w-full rounded-xl bg-slate-900 font-semibold text-white hover:bg-slate-700">
+          <Button onClick={onClose} className="ui-btn-brand mt-2 h-10 w-full rounded-xl font-semibold">
             Cerrar
           </Button>
         </div>
