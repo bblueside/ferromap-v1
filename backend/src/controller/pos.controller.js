@@ -83,4 +83,4 @@ const getAllPosExample = async (req, res) => {
     }
 }
 
-export { getAllPos, getAllPosExample };
+export { getAllPos, getAllPosExample, loadExamplePos };
