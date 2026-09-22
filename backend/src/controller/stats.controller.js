@@ -11,6 +11,44 @@ const PRIORITY_ORDER = { Alta: 1, Media: 2, Baja: 3 };
 const STATUSES = ["ACTIVO", "VALIDAR", "INACTIVO"];
 const RANKING_LIMIT = 10;
 
+// Región natural de cada departamento: `Pos` no guarda la región, se deriva de aquí.
+const REGIONS = ["Andina", "Caribe", "Pacífica", "Orinoquía", "Amazonía"];
+const UNKNOWN_REGION = "Sin región";
+const REGION_BY_DEPARTAMENTO = {
+    Antioquia: "Andina",
+    "Bogotá D.C.": "Andina",
+    Boyacá: "Andina",
+    Caldas: "Andina",
+    Cundinamarca: "Andina",
+    Huila: "Andina",
+    "Norte de Santander": "Andina",
+    Quindío: "Andina",
+    Risaralda: "Andina",
+    Santander: "Andina",
+    Tolima: "Andina",
+    Atlántico: "Caribe",
+    Bolívar: "Caribe",
+    Cesar: "Caribe",
+    Córdoba: "Caribe",
+    "La Guajira": "Caribe",
+    Magdalena: "Caribe",
+    Sucre: "Caribe",
+    Cauca: "Pacífica",
+    Chocó: "Pacífica",
+    Nariño: "Pacífica",
+    "Valle del Cauca": "Pacífica",
+    Arauca: "Orinoquía",
+    Casanare: "Orinoquía",
+    Meta: "Orinoquía",
+    Vichada: "Orinoquía",
+    Amazonas: "Amazonía",
+    Caquetá: "Amazonía",
+    Guainía: "Amazonía",
+    Guaviare: "Amazonía",
+    Putumayo: "Amazonía",
+    Vaupés: "Amazonía"
+};
+
 const priorityOrder = (priority) => PRIORITY_ORDER[priority] ?? 4;
 const percentage = (count, total) => (total ? Math.round((1000 * count) / total) / 10 : 0);
 
@@ -43,6 +81,24 @@ const buildStatusComparison = (byStatusCounts, byDepartamento) => {
             porcentaje: percentage(byStatusCounts[status] ?? 0, total)
         })),
         byDepartamento: byDepartamento.sort((a, b) => b.total - a.total)
+    };
+};
+
+// SELECT region, COUNT(*) FROM pos GROUP BY region — la región sale de `departamento`.
+const buildRegionTotals = (departamentoCounts) => {
+    const counts = new Map(REGIONS.map((region) => [region, 0]));
+    for (const { departamento, total } of departamentoCounts) {
+        const region = REGION_BY_DEPARTAMENTO[departamento] ?? UNKNOWN_REGION;
+        counts.set(region, (counts.get(region) ?? 0) + total);
+    }
+    if (counts.get(UNKNOWN_REGION) === 0) counts.delete(UNKNOWN_REGION);
+
+    const total = [...counts.values()].reduce((sum, count) => sum + count, 0);
+    return {
+        total,
+        byRegion: [...counts]
+            .map(([region, count]) => ({ region, total: count, porcentaje: percentage(count, total) }))
+            .sort((a, b) => b.total - a.total)
     };
 };
 
@@ -178,4 +234,40 @@ const getStatusComparisonExample = async (req, res) => {
     }
 }
 
-export { getPriorityRanking, getPriorityRankingExample, getStatusComparison, getStatusComparisonExample };
+const getRegionTotals = async (req, res) => {
+    try {
+        const rows = await Pos.aggregate([
+            { $group: { _id: "$departamento", total: { $sum: 1 } } },
+            { $project: { _id: 0, departamento: "$_id", total: 1 } }
+        ]);
+        res.status(200).json(buildRegionTotals(rows));
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal Server error",
+            error: error.message
+        });
+    }
+}
+
+const getRegionTotalsExample = async (req, res) => {
+    try {
+        const pos = await loadExamplePos();
+        const counts = new Map();
+        for (const { departamento } of pos) counts.set(departamento, (counts.get(departamento) ?? 0) + 1);
+        res.status(200).json(buildRegionTotals([...counts].map(([departamento, total]) => ({ departamento, total }))));
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal Server error",
+            error: error.message
+        });
+    }
+}
+
+export {
+    getPriorityRanking,
+    getPriorityRankingExample,
+    getRegionTotals,
+    getRegionTotalsExample,
+    getStatusComparison,
+    getStatusComparisonExample
+};
