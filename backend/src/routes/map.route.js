@@ -4,6 +4,7 @@ import { getAllTopZones, getAllTopZonesExample } from '../controller/topZone.con
 import { getAllFactories } from '../controller/factory.controller.js';
 import { getAllWarehouse } from '../controller/warehouse.controller.js';
 import { getAllRoutes } from '../controller/route.controller.js';
+import { getPriorityRanking, getPriorityRankingExample, getRegionTotals, getRegionTotalsExample, getStatusComparison, getStatusComparisonExample } from '../controller/stats.controller.js';
 import { requireAuth } from '../middleware/requireAuth.middleware.js';
 
 const router = Router();
@@ -18,8 +19,14 @@ router.route('/getAllTopZones').get(getAllTopZones);
 router.route('/getAllWarehouse').get(getAllWarehouse);
 router.route('/getAllFactories').get(getAllFactories);
 router.route('/getAllRoutes').get(getAllRoutes);
+router.route('/getPriorityRanking').get(getPriorityRanking);
+router.route('/getStatusComparison').get(getStatusComparison);
+router.route('/getRegionTotals').get(getRegionTotals);
 
 router.route('/getAllPosExample').get(getAllPosExample);
 router.route('/getAllTopZonesExample').get(getAllTopZonesExample);
+router.route('/getPriorityRankingExample').get(getPriorityRankingExample);
+router.route('/getStatusComparisonExample').get(getStatusComparisonExample);
+router.route('/getRegionTotalsExample').get(getRegionTotalsExample);
 
 export default router;

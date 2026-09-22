@@ -61,4 +61,4 @@ const getAllTopZonesExample = async (req, res) => {
     }
 }
 
-export { getAllTopZones, getAllTopZonesExample };
+export { getAllTopZones, getAllTopZonesExample, loadExampleZones };

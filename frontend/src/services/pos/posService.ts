@@ -10,10 +10,16 @@
  *     GET /api/map/getAllFactories  → plantas productoras
  *     GET /api/map/getAllWarehouse  → centros de distribución
  *     GET /api/map/getAllRoutes     → rutas logísticas (GeoJSON)
+ *
+ * Estadísticas del Dashboard (mismo router, agregadas en el backend):
+ *
+ *     GET /api/map/getPriorityRanking  → top 10 zonas por prioridad y potencial
+ *     GET /api/map/getStatusComparison → ferreterías por estado (objeto, no arreglo)
+ *     GET /api/map/getRegionTotals     → ferreterías por región natural (objeto)
  */
 
 import type { FeatureCollection, LineString } from "geojson";
-import { isPriority, type Priority } from "@/constants";
+import { isPriority, type PosStatus, type Priority } from "@/constants";
 import { fetchJson } from "../http";
 
 const MAP_API_URL =
@@ -56,6 +62,40 @@ export interface zone {
     analysis: string;
     lat: number;
     lng: number;
+}
+
+/** Zona del ranking → `GET /api/map/getPriorityRanking`. */
+export interface PriorityRankingEntry {
+    id: string;
+    name: string;
+    priority: Priority;
+    potential_score: number;
+    ferreterias_count: number;
+    /** Ferreterías de la zona por prioridad propia. */
+    pos_alta: number;
+    pos_media: number;
+    pos_baja: number;
+    /** Puesto estilo `RANK()`: los empates comparten número. */
+    ranking: number;
+}
+
+/** Ferreterías por estado → `GET /api/map/getStatusComparison`. */
+export interface StatusComparison {
+    total: number;
+    byStatus: { status: PosStatus; total: number; porcentaje: number }[];
+    byDepartamento: {
+        departamento: string;
+        activo: number;
+        validar: number;
+        inactivo: number;
+        total: number;
+    }[];
+}
+
+/** Ferreterías por región natural → `GET /api/map/getRegionTotals`. */
+export interface RegionTotals {
+    total: number;
+    byRegion: { region: string; total: number; porcentaje: number }[];
 }
 
 /*
@@ -120,6 +160,27 @@ export function fetchAllTopZones(): Promise<zone[]> {
 /** Zonas de ejemplo (Chocó) → `GET /api/map/getAllTopZonesExample`. */
 export function fetchAllTopZonesExample(): Promise<zone[]> {
     return fetchJson<zone[]>(`${MAP_API_URL}/getAllTopZonesExample`, {
+        credentials: "include",
+    });
+}
+
+/** Ranking de zonas → `GET /api/map/getPriorityRanking`. */
+export function fetchPriorityRanking(): Promise<PriorityRankingEntry[]> {
+    return fetchJson<PriorityRankingEntry[]>(`${MAP_API_URL}/getPriorityRanking`, {
+        credentials: "include",
+    });
+}
+
+/** Ferreterías por estado → `GET /api/map/getStatusComparison`. */
+export function fetchStatusComparison(): Promise<StatusComparison> {
+    return fetchJson<StatusComparison>(`${MAP_API_URL}/getStatusComparison`, {
+        credentials: "include",
+    });
+}
+
+/** Ferreterías por región → `GET /api/map/getRegionTotals`. */
+export function fetchRegionTotals(): Promise<RegionTotals> {
+    return fetchJson<RegionTotals>(`${MAP_API_URL}/getRegionTotals`, {
         credentials: "include",
     });
 }

@@ -10,6 +10,9 @@
  *     GET /api/control/getAllAgentRecords      → registros por agente
  *     GET /api/map/getAllTopZones              → zonas de mayor potencial
  *     GET /api/map/getAllPos                   → ferreterías (tabla y reporte)
+ *     GET /api/map/getPriorityRanking          → ranking de zonas por prioridad
+ *     GET /api/map/getStatusComparison         → ferreterías por estado
+ *     GET /api/map/getRegionTotals             → ferreterías por región
  *
  * `fetchDashboardData` los pide en paralelo y los adapta a la forma que
  * consumen las gráficas; los componentes no conocen la forma de cada endpoint.
@@ -17,8 +20,14 @@
 
 import { fetchJson } from "../http";
 import { fetchAllAgentRecords } from "../control/controlService";
-import { fetchAllPos, fetchAllTopZones } from "../pos/posService";
-import type { Pos, zone } from "../pos/posService";
+import {
+    fetchAllPos,
+    fetchAllTopZones,
+    fetchPriorityRanking,
+    fetchRegionTotals,
+    fetchStatusComparison,
+} from "../pos/posService";
+import type { Pos, PriorityRankingEntry, RegionTotals, StatusComparison, zone } from "../pos/posService";
 
 const DASHBOARD_API_URL =
     (import.meta.env as Record<string, string | undefined>).VITE_DASHBOARD_API_URL ??
@@ -61,6 +70,9 @@ export interface DashboardData {
     coberturaferreteria: QuantityEntry[];
     zones: zone[];
     ferreterias: Pos[];
+    priorityRanking: PriorityRankingEntry[];
+    statusComparison: StatusComparison;
+    regionTotals: RegionTotals;
 }
 
 // ─── Fetchers ────────────────────────────────────────────────────────────────
@@ -99,13 +111,18 @@ function toQuantityEntries(rows: { name: string; quantity: number | null }[]): Q
 
 /** Todos los datasets del Dashboard en una sola llamada (peticiones en paralelo). */
 export async function fetchDashboardData(): Promise<DashboardData> {
-    const [kpis, coverage, coverageGap, agentRecords, zones, ferreterias] = await Promise.all([
+    const [
+        kpis, coverage, coverageGap, agentRecords, zones, ferreterias, priorityRanking, statusComparison, regionTotals,
+    ] = await Promise.all([
         fetchAllKpis(),
         fetchAllPosCoverage(),
         fetchAllPosCoverageGap(),
         fetchAllAgentRecords(),
         fetchAllTopZones(),
         fetchAllPos(),
+        fetchPriorityRanking(),
+        fetchStatusComparison(),
+        fetchRegionTotals(),
     ]);
 
     return {
@@ -122,5 +139,8 @@ export async function fetchDashboardData(): Promise<DashboardData> {
         coberturaferreteria: toQuantityEntries(coverage),
         zones,
         ferreterias,
+        priorityRanking,
+        statusComparison,
+        regionTotals,
     };
 }

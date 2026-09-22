@@ -1,7 +1,3 @@
-import { StaticsCard } from "./StaticsCard"
-import { ChartBarDefault, type BarChartEntry } from "./BarChartDefault"
-import { ChartBarMultiple } from "./BarMutilpleChart"
-import { PieChartDonut } from "./PieChartDonut"
 import { Button } from "../ui/button"
 import { BackendUnavailableModal } from "@/components/shared/modal/BackendUnavailableModal"
 import { FileOutput } from "lucide-react"
@@ -13,21 +9,15 @@ import { useDashboard } from "@/services/dashboard/useDashboard";
 
 // ── Configs estáticas que no vienen de la API ──────────────────────────────────
 import {
-    pieChartConfig,
-    barChartTitle, barChartDescription,
-    barMultipleChartTitle, barMultipleChartDescription,
-    pieChartTitleAgent, pieChartDescriptionAgent,
-    donutChartTitleCompleteness, donutChartDescriptionCompleteness,
-    CoverageChartConfig
+    priorityRankingTitle, priorityRankingDescription,
+    statusComparisonTitle, statusComparisonDescription,
+    regionTotalsTitle, regionTotalsDescription
 } from "./chartConfig"
+import { PriorityRankingCard } from "./PriorityRankingCard"
+import { RegionTotalsCard } from "./RegionTotalsCard"
+import { StatusComparisonCard } from "./StatusComparisonCard"
 import { ApiStateLoading, ApiStateError } from "@/hooks/ApiStateWrapper"
 
-function getBarChartDataFromZones(zones: { name: string; potential_score: number }[]): BarChartEntry[] {
-    return zones.map((zone) => ({
-        name: zone.name,
-        value: zone.potential_score,
-    }))
-}
 
 export function Dashboard() {
     return (
@@ -56,7 +46,9 @@ function DashboardContent() {
     }
 
     // ── Datos del dashboard ────────────────────────────────────────────────────
-    const { kpis, ferromapvsferreterias, registrosagente, coberturaferreteria, zones } = dashboard
+    const {
+        priorityRanking, statusComparison, regionTotals,
+    } = dashboard
 
     return (
         <>
@@ -85,46 +77,26 @@ function DashboardContent() {
                     </div>
                 </div>
 
-                {/* ── KPIs ────────────────────────────────────────────────────── */}
-                <div className="grid grid-cols-2 gap-4">
-                    <StaticsCard value={kpis.totalFerreterias} title="Total de Ferreterias" />
-                    <StaticsCard value={kpis.totalContactos} title="Total de ferreterias contactables" />
-                </div>
+                {/* ── Ferreterías por región ──────────────────────────────────── */}
+                <RegionTotalsCard
+                    data={regionTotals}
+                    title={regionTotalsTitle}
+                    description={regionTotalsDescription}
+                />
 
-                {/* ── Bar Charts ──────────────────────────────────────────────── */}
+                {/* ── Estado operativo y ranking por prioridad ────────────────── */}
                 <div className="grid grid-cols-2 gap-4">
-                    <ChartBarDefault
-                        data={getBarChartDataFromZones(zones.slice(0, 5))}
-                        title={barChartTitle}
-                        description={barChartDescription}
+                    <StatusComparisonCard
+                        data={statusComparison}
+                        title={statusComparisonTitle}
+                        description={statusComparisonDescription}
                     />
-                    <ChartBarMultiple
-                        data={ferromapvsferreterias}
-                        title={barMultipleChartTitle}
-                        description={barMultipleChartDescription}
-                    />
-                </div>
-
-                {/* ── Pie / Donut Charts ──────────────────────────────────────── */}
-                <div className="grid grid-cols-2 gap-4">
-                    <PieChartDonut
-                        data={registrosagente}
-                        config={pieChartConfig}
-                        title={pieChartTitleAgent}
-                        description={pieChartDescriptionAgent}
-                    />
-                    <PieChartDonut
-                        data={coberturaferreteria}
-                        config={CoverageChartConfig}
-                        title={donutChartTitleCompleteness}
-                        description={donutChartDescriptionCompleteness}
-                        showCenterLabel={false}
+                    <PriorityRankingCard
+                        data={priorityRanking}
+                        title={priorityRankingTitle}
+                        description={priorityRankingDescription}
                     />
                 </div>
-
-                {/* ── Line Chart ──────────────────────────────────────────────── */}
-
-                {/* ── DataTable ───────────────────────────────────────────────── */}
                 <PosTable />
             </div>
         </>
