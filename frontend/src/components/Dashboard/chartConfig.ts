@@ -71,6 +71,14 @@ export const CoverageChartConfig = {
     },
 } satisfies ChartConfig
 
+// ─── G-07 · Ranking de zonas por prioridad ─────────────────────────────────────────
+export const priorityRankingTitle = "Ranking de zonas por prioridad"
+export const priorityRankingDescription = "Top 10 zonas ordenadas por prioridad y potencial"
+
+// ─── G-08 · Estado operativo de ferreterías ────────────────────────────────────────
+export const statusComparisonTitle = "Estado operativo de ferreterías"
+export const statusComparisonDescription = "Ferreterías activas, por validar e inactivas"
+
 // ─── G-06 · Evolución de registros por corrida del pipeline ──────────────────────────────────────────────────
 
 export const lineChartTitle = "Evolución de registros"
