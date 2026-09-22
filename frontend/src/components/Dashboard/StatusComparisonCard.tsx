@@ -36,7 +36,7 @@ export function StatusComparisonCard({ data, title, description }: StatusCompari
                 <CardDescription>{description}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-6">
-                {/* ── Totales por estado ── */}
+                {/* ── Totales por estado ── */} 
                 <div className="grid grid-cols-3 gap-3">
                     {data.byStatus.map(({ status, total, porcentaje }) => {
                         const { label, description, tone } = POS_STATUS_META[status]

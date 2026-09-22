@@ -79,6 +79,10 @@ export const priorityRankingDescription = "Top 10 zonas ordenadas por prioridad 
 export const statusComparisonTitle = "Estado operativo de ferreterías"
 export const statusComparisonDescription = "Ferreterías activas, por validar e inactivas"
 
+// ─── G-09 · Ferreterías por región ─────────────────────────────────────────────────
+export const regionTotalsTitle = "Ferreterías por región"
+export const regionTotalsDescription = "Total general y distribución por región natural"
+
 // ─── G-06 · Evolución de registros por corrida del pipeline ──────────────────────────────────────────────────
 
 export const lineChartTitle = "Evolución de registros"

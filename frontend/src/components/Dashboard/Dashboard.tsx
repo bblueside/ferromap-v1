@@ -10,9 +10,11 @@ import { useDashboard } from "@/services/dashboard/useDashboard";
 // ── Configs estáticas que no vienen de la API ──────────────────────────────────
 import {
     priorityRankingTitle, priorityRankingDescription,
-    statusComparisonTitle, statusComparisonDescription
+    statusComparisonTitle, statusComparisonDescription,
+    regionTotalsTitle, regionTotalsDescription
 } from "./chartConfig"
 import { PriorityRankingCard } from "./PriorityRankingCard"
+import { RegionTotalsCard } from "./RegionTotalsCard"
 import { StatusComparisonCard } from "./StatusComparisonCard"
 import { ApiStateLoading, ApiStateError } from "@/hooks/ApiStateWrapper"
 
@@ -45,7 +47,7 @@ function DashboardContent() {
 
     // ── Datos del dashboard ────────────────────────────────────────────────────
     const {
-        priorityRanking, statusComparison,
+        priorityRanking, statusComparison, regionTotals,
     } = dashboard
 
     return (
@@ -74,7 +76,14 @@ function DashboardContent() {
                         </Button>
                     </div>
                 </div>
-                
+
+                {/* ── Ferreterías por región ──────────────────────────────────── */}
+                <RegionTotalsCard
+                    data={regionTotals}
+                    title={regionTotalsTitle}
+                    description={regionTotalsDescription}
+                />
+
                 {/* ── Estado operativo y ranking por prioridad ────────────────── */}
                 <div className="grid grid-cols-2 gap-4">
                     <StatusComparisonCard

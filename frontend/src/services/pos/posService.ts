@@ -15,6 +15,7 @@
  *
  *     GET /api/map/getPriorityRanking  → top 10 zonas por prioridad y potencial
  *     GET /api/map/getStatusComparison → ferreterías por estado (objeto, no arreglo)
+ *     GET /api/map/getRegionTotals     → ferreterías por región natural (objeto)
  */
 
 import type { FeatureCollection, LineString } from "geojson";
@@ -89,6 +90,12 @@ export interface StatusComparison {
         inactivo: number;
         total: number;
     }[];
+}
+
+/** Ferreterías por región natural → `GET /api/map/getRegionTotals`. */
+export interface RegionTotals {
+    total: number;
+    byRegion: { region: string; total: number; porcentaje: number }[];
 }
 
 /*
@@ -167,6 +174,13 @@ export function fetchPriorityRanking(): Promise<PriorityRankingEntry[]> {
 /** Ferreterías por estado → `GET /api/map/getStatusComparison`. */
 export function fetchStatusComparison(): Promise<StatusComparison> {
     return fetchJson<StatusComparison>(`${MAP_API_URL}/getStatusComparison`, {
+        credentials: "include",
+    });
+}
+
+/** Ferreterías por región → `GET /api/map/getRegionTotals`. */
+export function fetchRegionTotals(): Promise<RegionTotals> {
+    return fetchJson<RegionTotals>(`${MAP_API_URL}/getRegionTotals`, {
         credentials: "include",
     });
 }
